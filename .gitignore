@@ -1,3 +1,5 @@
+# Archivo para ignorar archivos y carpetas en git
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -160,3 +162,30 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+
+# Archivos de bytecode compilados por Python.
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de puntos de control de Jupyter Notebook
+.ipynb_checkpoints/
+
+# Archivos de configuración del entorno de desarrollo
+.vscode/
+.idea/
+
+# Archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+
+# Archivos de compilación
+*.o
+*.so
+*.exe
