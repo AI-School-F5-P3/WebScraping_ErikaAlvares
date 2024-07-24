@@ -55,7 +55,7 @@ Esta carpeta contiene el entorno virtual para el proyecto, que incluye todas las
 Archivo que especifica qué archivos y directorios deben ser ignorados por Git. Incluye cosas como archivos compilados de Python, el entorno virtual y archivos de configuración específicos del entorno.
 
 #### `README.md`
-Este archivo. Contiene la documentación del proyecto, incluyendo la descripción, instalación, configuración y ejecución.
+Este archivo contiene la documentación del proyecto, incluyendo la descripción, instalación, configuración y ejecución.
 
 #### `requirements.txt`
 Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden ser instaladas utilizando `pip install -r requirements.txt`.
