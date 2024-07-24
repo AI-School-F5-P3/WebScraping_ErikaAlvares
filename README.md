@@ -118,13 +118,6 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
     python src/main.py
     ```
 
-## Descripción de los Archivos
-
-- `src/main.py`: Punto de entrada del proyecto. Coordina el scraping y el procesamiento de datos.
-- `src/db_setup.py`: Configura la base de datos y define los modelos de datos.
-- `src/scraping.py`: Realiza el web scraping y genera DataFrames con los datos extraídos.
-- `src/data_processing.py`: Normaliza los datos y los almacena en la base de datos.
-
 ## Estructura de la Base de Datos
 
 - **authors**: Almacena los datos de los autores.
