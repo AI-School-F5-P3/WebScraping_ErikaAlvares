@@ -1,7 +1,7 @@
 # Documentación del proyecto
 
 ## erika_alvares_web_scraping
-Proyecto desarrollado para una empresa fictícia llamada empresa XYZ Corp - Factoría F5.
+Proyecto desarrollado para una empresa fictícia llamada empresa XYZ Corp.
 
 ## Proyecto de Web Scraping y Normalización de Datos
 
