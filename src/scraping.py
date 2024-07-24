@@ -9,9 +9,6 @@ def clean_text(text):
 def scrape_quotes():
     quotes = []
     authors = []
-    born_dates = []
-    born_locations = []
-    descriptions = []
     tags = []
 
     # Realiza el web scraping (ajusta la URL y el scraping según tu necesidad)
@@ -22,7 +19,7 @@ def scrape_quotes():
 
         for quote in soup.select('.quote'):
             text = clean_text(quote.select_one('.text').get_text())
-            author = clean_text(quote.select_one('.author').get_text())
+            author_name = clean_text(quote.select_one('.author').get_text())
             tags_list = [clean_text(tag.get_text()) for tag in quote.select('.tag')]
             quote_page = quote.select_one('a')['href']
             author_url = f"http://quotes.toscrape.com{quote_page}"
@@ -32,24 +29,13 @@ def scrape_quotes():
             born_location = clean_text(author_soup.select_one('.author-born-location').get_text())
             description = clean_text(author_soup.select_one('.author-description').get_text())
 
-            quotes.append(text)
-            authors.append(author)
-            born_dates.append(born_date)
-            born_locations.append(born_location)
-            descriptions.append(description)
-            tags.append(tags_list)
+            quotes.append((text, author_name, tags_list))
+            authors.append((author_name, born_date, born_location, description))
 
         next_page = soup.select_one('.next > a')
         url = f"http://quotes.toscrape.com{next_page['href']}" if next_page else None
 
-    # Crear un DataFrame
-    data = {
-        'quote': quotes,
-        'author': authors,
-        'author_born_date': born_dates,
-        'author_born_location': born_locations,
-        'author_description': descriptions,
-        'tags': tags
-    }
-    quotes_df = pd.DataFrame(data)
-    return quotes_df
+    quotes_df = pd.DataFrame(quotes, columns=['quote', 'author', 'tags'])
+    authors_df = pd.DataFrame(authors, columns=['name', 'born_date', 'born_location', 'description']).drop_duplicates()
+
+    return quotes_df, authors_df

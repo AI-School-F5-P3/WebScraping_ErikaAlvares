@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, Table
+from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 # Conexión con la BD (modificada)
@@ -16,28 +16,30 @@ engine = create_engine(
 )
 Base = declarative_base()
 
-# Definir las tablas
-quote_tag_association = Table(
-    'quote_tag', Base.metadata,
-    Column('quote_id', Integer, ForeignKey('quotes.id')),
-    Column('tag_id', Integer, ForeignKey('tags.id'))
-)
-
-class Quote(Base):
-    __tablename__ = 'quotes'
+class Author(Base):
+    __tablename__ = 'authors'
     id = Column(Integer, primary_key=True)
-    text = Column(Text)  # Cambiar a Text para permitir textos largos
-    author = Column(String(255))
-    author_born_date = Column(String(255))
-    author_born_location = Column(String(255))
-    author_description = Column(Text)  # Cambiar a Text para permitir descripciones largas
-    tags = relationship('Tag', secondary=quote_tag_association, back_populates='quotes')
+    name = Column(String(255), unique=True)
+    born_date = Column(String(255))
+    born_location = Column(String(255))
+    description = Column(Text)
 
 class Tag(Base):
     __tablename__ = 'tags'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True)
-    quotes = relationship('Quote', secondary=quote_tag_association, back_populates='tags')
+
+class Quote(Base):
+    __tablename__ = 'quotes'
+    id = Column(Integer, primary_key=True)
+    text = Column(Text)
+    author_id = Column(Integer, ForeignKey('authors.id'))
+    tag_id = Column(Integer, ForeignKey('tags.id'))
+    author = relationship('Author', back_populates='quotes')
+    tag = relationship('Tag', back_populates='quotes')
+
+Author.quotes = relationship('Quote', order_by=Quote.id, back_populates='author')
+Tag.quotes = relationship('Quote', order_by=Quote.id, back_populates='tag')
 
 # Crear las tablas en la base de datos
 Base.metadata.drop_all(engine)  # Borrar las tablas existentes
