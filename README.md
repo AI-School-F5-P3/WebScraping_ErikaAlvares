@@ -29,6 +29,7 @@ Proyecto_WebScraping_ErikaAlvares/
 │   └── README.md
 │
 └── requirements.txt
+````
 
 ### Descripción de Carpetas y Archivos
 
