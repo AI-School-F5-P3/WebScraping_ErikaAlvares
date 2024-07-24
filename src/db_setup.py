@@ -1,6 +1,4 @@
-# Este archivo contiene la configuración de la base de datos y las definiciones de los modelos. 
-
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Table
+from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, Table
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 # Conexión con la BD (modificada)
@@ -28,21 +26,22 @@ quote_tag_association = Table(
 class Quote(Base):
     __tablename__ = 'quotes'
     id = Column(Integer, primary_key=True)
-    text = Column(String)
-    author = Column(String)
-    author_born_date = Column(String)
-    author_born_location = Column(String)
-    author_description = Column(String)
+    text = Column(Text)  # Cambiar a Text para permitir textos largos
+    author = Column(String(255))
+    author_born_date = Column(String(255))
+    author_born_location = Column(String(255))
+    author_description = Column(Text)  # Cambiar a Text para permitir descripciones largas
     tags = relationship('Tag', secondary=quote_tag_association, back_populates='quotes')
 
 class Tag(Base):
     __tablename__ = 'tags'
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
+    name = Column(String(255), unique=True)
     quotes = relationship('Quote', secondary=quote_tag_association, back_populates='tags')
 
 # Crear las tablas en la base de datos
-Base.metadata.create_all(engine)
+Base.metadata.drop_all(engine)  # Borrar las tablas existentes
+Base.metadata.create_all(engine)  # Crear las tablas con la nueva estructura
 
 # Crear una sesión
 Session = sessionmaker(bind=engine)

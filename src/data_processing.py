@@ -1,6 +1,3 @@
-
-# Este archivo hace el procesamiento de los datos usando pandas.
-
 import pandas as pd
 from db_setup import Quote, Tag, session
 
@@ -8,8 +5,8 @@ def process_data(quotes_df):
     # Crear una lista de tuplas (quote, tag)
     quote_tags = []
     for index, row in quotes_df.iterrows():
-        for tag in row['tags'].strip('[]').split(', '):
-            quote_tags.append((row['quote'], tag.strip("'")))
+        for tag in row['tags']:
+            quote_tags.append((row['quote'], tag))
 
     # Crear un DataFrame a partir de la lista de tuplas
     quote_tags_df = pd.DataFrame(quote_tags, columns=['quote', 'tag'])
@@ -37,5 +34,4 @@ def process_data(quotes_df):
 
     # Confirmar los cambios en la base de datos
     session.commit()
-
     print("Datos normalizados y guardados en la base de datos MySQL.")
