@@ -23,11 +23,13 @@ class Author(Base):
     born_date = Column(String(255))
     born_location = Column(String(255))
     description = Column(Text)
+    quotes = relationship('Quote', back_populates='author')
 
 class Tag(Base):
     __tablename__ = 'tags'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True)
+    quotes = relationship('Quote', back_populates='tag')
 
 class Quote(Base):
     __tablename__ = 'quotes'
@@ -37,9 +39,6 @@ class Quote(Base):
     tag_id = Column(Integer, ForeignKey('tags.id'))
     author = relationship('Author', back_populates='quotes')
     tag = relationship('Tag', back_populates='quotes')
-
-Author.quotes = relationship('Quote', order_by=Quote.id, back_populates='author')
-Tag.quotes = relationship('Quote', order_by=Quote.id, back_populates='tag')
 
 # Crear las tablas en la base de datos
 Base.metadata.drop_all(engine)  # Borrar las tablas existentes
