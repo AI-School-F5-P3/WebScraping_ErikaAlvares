@@ -1,5 +1,3 @@
-```markdown
-
 # Documentación del proyecto
 
 ## erika_alvares_web_scraping
