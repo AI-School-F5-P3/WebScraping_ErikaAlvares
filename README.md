@@ -1,4 +1,4 @@
-```markdown
+
 # Documentación del Proyecto
 
 ## erika_alvares_web_scraping
@@ -182,9 +182,12 @@ __pycache__/
 *.pyc
 ```
 
-# Ignorar archivos de datos generados
+# Ignorar archivos de datos y de log generados
 ```
 data/*.csv
+
+webscraping.log
+webscraping.log.*
 ```
 
 ## Pruebas
