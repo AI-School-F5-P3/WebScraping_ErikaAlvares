@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import time
-from logging_config import logger
+from logging_config import logger # gestión de logs
 
 def clean_text(text):
     """
