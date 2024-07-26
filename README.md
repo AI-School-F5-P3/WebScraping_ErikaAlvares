@@ -155,15 +155,6 @@ Para ejecutar las pruebas, utiliza `pytest`. Las pruebas se encuentran en la car
 pytest tests/
 ```
 
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
-```
-
 ## Configuración de Docker
 
 Para construir y ejecutar el contenedor Docker:
@@ -171,4 +162,14 @@ Para construir y ejecutar el contenedor Docker:
 ```sh
 docker build -t my-project .
 docker run -p 8501:8501 my-project
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
+¡Entra en mi web https://www.erikaalvares.es y contacta conmigo!
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT.
+```
 
