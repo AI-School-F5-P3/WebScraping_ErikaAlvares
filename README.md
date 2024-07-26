@@ -210,5 +210,4 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para
 ¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
 
 ## Licencia
-
 Este proyecto está bajo la Licencia MIT.
