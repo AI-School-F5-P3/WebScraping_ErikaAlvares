@@ -23,7 +23,7 @@ def main():
         start_clean_time = time.strftime("%Y-%m-%d %H:%M:%S")
         print(colored(f"El proceso de Limpieza de los datos acaba de empezar – {start_clean_time}", 'green'))
 
-        quotes_df, authors_df = process_data(quotes_df, authors_df)
+        quotes_df, authors_df, author_count, tag_count, quote_count = process_data(quotes_df, authors_df)
 
         end_clean_time = time.strftime("%Y-%m-%d %H:%M:%S")
         print(colored(f"El proceso de Limpieza acaba de finalizar – {end_clean_time}", 'green'))
@@ -31,7 +31,7 @@ def main():
         print(colored(f"Han sido separado(s) lo(s) dato(s) de cita(s) en un dataframe 'Quotes'", 'yellow'))
         print(colored(f"Han sido separado(s) lo(s) dato(s) de autor(es) en un dataframe 'Authors'", 'yellow'))
         print(colored(f"Han sido separado(s) lo(s) dato(s) de etiqueta(s) en un dataframe 'Tags'", 'yellow'))
-        print(colored(f"Al total han sido importados:\n- {len(quotes_df)} Quotes\n- {len(authors_df)} Authors", 'yellow'))
+        print(colored(f"Al total han sido importados:\n- {quote_count} Quotes\n- {author_count} Authors\n- {tag_count} Tags", 'yellow'))
 
         # Preguntar al usuario si desea exportar los datos a CSV
         response = input("¿Deseas generar un archivo .csv para Quotes, Authors y Tags? (S/N): ")

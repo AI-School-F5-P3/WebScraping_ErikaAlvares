@@ -47,9 +47,14 @@ def process_data(quotes_df, authors_df):
         session.bulk_save_objects(quote_objects)
         session.commit()
         logger.info('Quotes inserted successfully.')
-        print("Datos normalizados y guardados en la base de datos MySQL.")
         
-        return quotes_df, authors_df
+        # Obtener el conteo de registros en cada tabla
+        author_count = session.query(Author).count()
+        tag_count = session.query(Tag).count()
+        quote_count = session.query(Quote).count()
+        
+        print("Datos normalizados y guardados en la base de datos MySQL.")
+        return quotes_df, authors_df, author_count, tag_count, quote_count
 
     except IntegrityError as e:
         session.rollback()
@@ -61,5 +66,5 @@ def process_data(quotes_df, authors_df):
         session.rollback()
         logger.error(f"Error al procesar los datos: {e}")
     
-    return None, None  # En caso de error, devolver None
+    return None, None, 0, 0, 0  # En caso de error, devolver None y ceros
 
