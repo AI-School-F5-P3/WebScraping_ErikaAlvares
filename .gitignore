@@ -189,3 +189,12 @@ Thumbs.db
 *.o
 *.so
 *.exe
+
+# Ignorar archivos de log generados por logging_config.py
+webscraping.log
+webscraping.log.*
+
+# Ignorar los .csv generados en el processo de web scraping
+venv/
+__pycache__/
+data/*.csv
