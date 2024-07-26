@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import time
+from logging_config import logger
 
 def clean_text(text):
     """
@@ -47,15 +48,17 @@ def scrape_quotes():
             url = f"http://quotes.toscrape.com{next_page['href']}" if next_page else None
 
             time.sleep(0.1)  # Ajusta según sea necesario
+            logger.info(f'Scraped page: {response.url}')
 
         except requests.RequestException as e:
-            print(f"Error durante la solicitud HTTP: {e}")
+            logger.error(f"Error durante la solicitud HTTP: {e}")
             break
         except Exception as e:
-            print(f"Error durante el scraping: {e}")
+            logger.error(f"Error durante el scraping: {e}")
             break
 
     quotes_df = pd.DataFrame(quotes, columns=['quote', 'author', 'tags'])
     authors_df = pd.DataFrame(authors, columns=['name', 'born_date', 'born_location', 'description']).drop_duplicates()
 
+    logger.info('Scraping completed successfully.')
     return quotes_df, authors_df

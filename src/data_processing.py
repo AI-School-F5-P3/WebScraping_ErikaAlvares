@@ -1,6 +1,7 @@
 import pandas as pd
 from db_setup import Author, Tag, Quote, session
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from logging_config import logger
 
 def process_data(quotes_df, authors_df):
     """
@@ -17,6 +18,7 @@ def process_data(quotes_df, authors_df):
 
         session.bulk_save_objects(author_objects, return_defaults=True)
         session.commit()
+        logger.info('Authors inserted successfully.')
 
         # Crea un diccionario para mapear los nombres de los autores a sus IDs
         author_id_map = {author.name: author.id for author in session.query(Author).all()}
@@ -27,6 +29,7 @@ def process_data(quotes_df, authors_df):
 
         session.bulk_save_objects(tag_objects, return_defaults=True)
         session.commit()
+        logger.info('Tags inserted successfully.')
 
         # Crea un diccionario para mapear los nombres de las etiquetas a sus IDs
         tag_id_map = {tag.name: tag.id for tag in session.query(Tag).all()}
@@ -43,14 +46,15 @@ def process_data(quotes_df, authors_df):
 
         session.bulk_save_objects(quote_objects)
         session.commit()
+        logger.info('Quotes inserted successfully.')
         print("Datos normalizados y guardados en la base de datos MySQL.")
 
     except IntegrityError as e:
         session.rollback()
-        print(f"Error de integridad en la base de datos: {e}")
+        logger.error(f"Error de integridad en la base de datos: {e}")
     except SQLAlchemyError as e:
         session.rollback()
-        print(f"Error de SQLAlchemy: {e}")
+        logger.error(f"Error de SQLAlchemy: {e}")
     except Exception as e:
         session.rollback()
-        print(f"Error al procesar los datos: {e}")
+        logger.error(f"Error al procesar los datos: {e}")
