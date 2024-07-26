@@ -162,6 +162,7 @@ Para construir y ejecutar el contenedor Docker:
 ```sh
 docker build -t my-project .
 docker run -p 8501:8501 my-project
+```
 
 ## Contribuciones
 
@@ -171,5 +172,5 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT.
-```
+
 
