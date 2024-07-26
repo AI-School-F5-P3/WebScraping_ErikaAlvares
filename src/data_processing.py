@@ -48,6 +48,8 @@ def process_data(quotes_df, authors_df):
         session.commit()
         logger.info('Quotes inserted successfully.')
         print("Datos normalizados y guardados en la base de datos MySQL.")
+        
+        return quotes_df, authors_df
 
     except IntegrityError as e:
         session.rollback()
@@ -58,3 +60,6 @@ def process_data(quotes_df, authors_df):
     except Exception as e:
         session.rollback()
         logger.error(f"Error al procesar los datos: {e}")
+    
+    return None, None  # En caso de error, devolver None
+
