@@ -128,6 +128,31 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
     python src/main.py
     ```
 
+2. Salida Esperada desde la CONSOLA
+
+```plaintext
+Título: PROCESO DE WEB SCRAPING
+El proceso de Web Scraping acaba de empezar – 2024-07-26 17:07:41
+El proceso de Web Scraping acaba de finalizar – 2024-07-26 17:08:05
+Resumen Proceso de Web Scraping
+Han sido scrapeado(s) 100 registro(s) al total
+
+El proceso de Limpieza de los datos acaba de empezar – 2024-07-26 17:08:05
+Datos normalizados y guardados en la base de datos MySQL.
+El proceso de Limpieza acaba de finalizar – 2024-07-26 17:08:05
+Han sido limpiado(s) 100 registro(s) al total
+Han sido separado(s) lo(s) dato(s) de cita(s) en un dataframe 'Quotes'
+Han sido separado(s) lo(s) dato(s) de autor(es) en un dataframe 'Authors'
+Han sido separado(s) lo(s) dato(s) de etiqueta(s) en un dataframe 'Tags'
+Al total han sido importados:
+- 100 Quotes
+- 50 Authors
+- 6 Tags
+¿Deseas generar un archivo .csv para Quotes, Authors y Tags? (S/N): S
+Los archivos CSV han sido generados en la carpeta 'data'.
+
+```
+
 ## Estructura de la Base de Datos
 
 - **authors**: Almacena los datos de los autores.
