@@ -23,6 +23,7 @@ packaging==24.1
 pandas==2.2.2
 pillow==10.4.0
 pluggy==1.5.0
+prettytable==3.10.2
 protobuf==5.27.2
 pyarrow==17.0.0
 pydeck==0.9.1
@@ -41,6 +42,7 @@ soupsieve==2.5
 SQLAlchemy==2.0.31
 streamlit==1.36.0
 tenacity==8.5.0
+termcolor==2.4.0
 toml==0.10.2
 toolz==0.12.1
 tornado==6.4.1
@@ -48,3 +50,4 @@ typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
 watchdog==4.0.1
+wcwidth==0.2.13

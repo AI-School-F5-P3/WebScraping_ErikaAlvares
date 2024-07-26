@@ -1,7 +1,8 @@
-# Documentación del proyecto
+```markdown
+# Documentación del Proyecto
 
 ## erika_alvares_web_scraping
-Proyecto desarrollado para una empresa fictícia llamada empresa XYZ Corp.
+Proyecto desarrollado para una empresa ficticia llamada empresa XYZ Corp.
 
 ## Proyecto de Web Scraping y Normalización de Datos
 
@@ -20,16 +21,21 @@ Proyecto_WebScraping_ErikaAlvares/
 │   │   ├── main.py
 │   │   ├── db_setup.py
 │   │   ├── scraping.py
-│   │   └── data_processing.py
+│   │   ├── data_processing.py
+│   │   ├── logging_config.py
 │   ├── tests/
 │   │   ├── __init__.py
 │   │   └── test_data_processing.py
 │   ├── venv/
+│   ├── data/
+│   │   ├── authors.csv
+│   │   ├── quotes.csv
+│   │   └── tags.csv
 │   ├── .gitignore
 │   └── README.md
 │
 └── requirements.txt
-````
+```
 
 ### Descripción de Carpetas y Archivos
 
@@ -37,10 +43,11 @@ Proyecto_WebScraping_ErikaAlvares/
 Esta carpeta contiene el código fuente principal del proyecto.
 
 - `__init__.py`: Indica que esta carpeta debe ser tratada como un módulo de Python.
-- `main.py`: Es el punto de entrada del proyecto. Coordina el flujo del scraping y el procesamiento de datos.
+- `main.py`: Es el punto de entrada del proyecto. Coordina el flujo del scraping, procesamiento de datos y almacenamiento en la base de datos.
 - `db_setup.py`: Configura la base de datos y define los modelos de datos (tablas) utilizando SQLAlchemy.
 - `scraping.py`: Contiene el código para realizar el web scraping en el sitio de citas y generar DataFrames con los datos extraídos.
 - `data_processing.py`: Contiene el código para normalizar los datos extraídos y almacenarlos en la base de datos MySQL.
+- `logging_config.py`: Configura el sistema de logs para registrar la ejecución del proceso.
 
 #### `tests/`
 Esta carpeta contiene las pruebas del proyecto.
@@ -51,8 +58,11 @@ Esta carpeta contiene las pruebas del proyecto.
 #### `venv/`
 Esta carpeta contiene el entorno virtual para el proyecto, que incluye todas las dependencias instaladas necesarias para ejecutar el código. No es necesario modificar nada dentro de esta carpeta.
 
+#### `data/`
+Esta carpeta contiene los archivos CSV generados después del procesamiento de datos.
+
 #### `.gitignore`
-Archivo que especifica qué archivos y directorios deben ser ignorados por Git. Incluye cosas como archivos compilados de Python, el entorno virtual y archivos de configuración específicos del entorno.
+Archivo que especifica qué archivos y directorios deben ser ignorados por Git. Incluye cosas como archivos compilados de Python, el entorno virtual, archivos de configuración específicos del entorno y archivos de log.
 
 #### `README.md`
 Este archivo contiene la documentación del proyecto, incluyendo la descripción, instalación, configuración y ejecución.
@@ -147,6 +157,36 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
 | 1   | "La vida es lo que haces de ella..."            | 2         | 1      |
 | 2   | "El amor es una fuerza más formidable..."       | 1         | 2      |
 
+## Sistema de Logging
+
+El sistema de logging está configurado para registrar la ejecución del proceso en un archivo `webscraping.log`. Los logs se rotan después de alcanzar un tamaño máximo de 2000 bytes, con hasta 5 archivos de respaldo. El archivo `.gitignore` está configurado para excluir estos archivos de log.
+
+## Archivo .gitignore
+
+El archivo `.gitignore` contiene las siguientes entradas para asegurar que los archivos y directorios innecesarios no se incluyan en el repositorio:
+
+```plaintext
+# Ignorar archivos de log generados por logging_config.py
+webscraping.log
+webscraping.log.*
+```
+
+# Ignorar entorno virtual
+```
+venv/
+```
+
+# Ignorar archivos de caché de Python
+```
+__pycache__/
+*.pyc
+```
+
+# Ignorar archivos de datos generados
+```
+data/*.csv
+```
+
 ## Pruebas
 
 Para ejecutar las pruebas, utiliza `pytest`. Las pruebas se encuentran en la carpeta `tests`.
@@ -167,10 +207,8 @@ docker run -p 8501:8501 my-project
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
-¡Entra en mi web https://www.erikaalvares.es y contacta conmigo!
+¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
 
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT.
-
-
