@@ -240,9 +240,7 @@ docker run -p 8501:8501 my-project
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
-¡Entra en mi web [
-
-https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
+¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
