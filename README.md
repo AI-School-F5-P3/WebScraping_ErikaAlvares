@@ -1,6 +1,6 @@
 # Documentación del Proyecto
 
-## erika_alvares_web_scraping
+## WebScraping_ErikaAlvares
 Proyecto desarrollado para una empresa ficticia llamada empresa XYZ Corp.
 
 ## Proyecto de Web Scraping y Normalización de Datos
