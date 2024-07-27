@@ -1,17 +1,42 @@
 import pytest
 import time
-from src.scraping import scrape_quotes
-from src.data_processing import process_data
+import sys
+import os
+import pandas as pd
+
+# Agregar el directorio `src` al sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from scraping import scrape_quotes
 
 def test_scraping_performance():
     start_time = time.time()
-    quotes_df, authors_df = scrape_quotes()
+    quotes_df, authors_df, tags_df = scrape_quotes()
     end_time = time.time()
-    assert (end_time - start_time) < 60  # El tiempo de scraping debería ser menos de 60 segundos
+    elapsed_time = end_time - start_time
+    assert elapsed_time < 30  # Verifica que el scraping tome menos de 30 segundos
 
 def test_processing_performance():
-    quotes_df, authors_df = scrape_quotes()
+    from data_processing import process_data
+
+    # Simula datos de entrada
+    quotes_df = pd.DataFrame({
+        'quote': ['Sample quote 1', 'Sample quote 2'],
+        'author': ['Author 1', 'Author 2'],
+        'tags': [['tag1', 'tag2'], ['tag2', 'tag3']]
+    })
+    authors_df = pd.DataFrame({
+        'name': ['Author 1', 'Author 2'],
+        'born_date': ['Date 1', 'Date 2'],
+        'born_location': ['Location 1', 'Location 2'],
+        'description': ['Description 1', 'Description 2']
+    })
+    tags_df = pd.DataFrame({
+        'tag': ['tag1', 'tag2', 'tag3']
+    })
+
     start_time = time.time()
-    process_data(quotes_df, authors_df)
+    quotes_df, authors_df, tags_df, author_count, tag_count, quote_count = process_data(quotes_df, authors_df, tags_df)
     end_time = time.time()
-    assert (end_time - start_time) < 60  # El tiempo de procesamiento debería ser menos de 60 segundos
+    elapsed_time = end_time - start_time
+    assert elapsed_time < 10  # Verifica que el procesamiento de datos tome menos de 10 segundos
