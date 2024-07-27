@@ -31,7 +31,10 @@ Proyecto_WebScraping_ErikaAlvares/
 │   ├── tests/
 │   │   ├── __init__.py
 │   │   ├── test_data_processing.py
-│   │   └── test_scraping.py
+│   │   ├── test_integration.py
+│   │   ├── test_performance.py
+│   │   ├── test_scraping.py
+│   │   └── test_security.py
 │   ├── .gitignore
 │   ├── README.md
 │   ├── requirements.txt
@@ -61,6 +64,9 @@ Esta carpeta contiene las pruebas del proyecto.
 - `__init__.py`: Indica que esta carpeta debe ser tratada como un módulo de Python.
 - `test_scraping.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de scraping.
 - `test_data_processing.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de procesamiento de datos.
+- `test_integration.py`: Contiene pruebas para verificar la integración de diferentes partes del sistema.
+- `test_performance.py`: Contiene pruebas para medir el rendimiento de las funciones.
+- `test_security.py`: Contiene pruebas para verificar la seguridad del sistema, como la prevención de inyecciones SQL.
 
 #### `data/`
 Esta carpeta contiene los archivos CSV generados después del procesamiento de datos.
@@ -192,11 +198,66 @@ El sistema de logging está configurado para registrar la ejecución del proceso
 
 ## Pruebas
 
+### Tipos de Pruebas Realizadas
+
+#### `test_scraping.py`
+- **Objetivo**: Verificar el correcto funcionamiento de las funciones de scraping.
+- **Pruebas realizadas**: 
+  - `test_clean_text()`: Verifica la limpieza del texto eliminado caracteres innecesarios.
+  - `test_scrape_quotes()`: Verifica que la función de scraping devuelve datos no vacíos y con las columnas esperadas.
+
+#### `test_data_processing.py`
+- **Objetivo**: Verificar el correcto funcionamiento de las funciones de procesamiento de datos.
+- **Pruebas
+
+ realizadas**:
+  - `test_process_data()`: Verifica que los datos se procesan y almacenan correctamente en la base de datos.
+
+#### `test_integration.py`
+- **Objetivo**: Verificar la integración de diferentes partes del sistema.
+- **Pruebas realizadas**:
+  - `test_integration()`: Verifica que las distintas partes del sistema funcionan correctamente juntas.
+
+#### `test_performance.py`
+- **Objetivo**: Medir el rendimiento de las funciones.
+- **Pruebas realizadas**:
+  - `test_performance()`: Verifica que las funciones se ejecutan en un tiempo aceptable.
+
+#### `test_security.py`
+- **Objetivo**: Verificar la seguridad del sistema, como la prevención de inyecciones SQL.
+- **Pruebas realizadas**:
+  - `test_sql_injection()`: Verifica que el sistema es resistente a inyecciones SQL.
+
+### Ejecución de Pruebas
+
 Para ejecutar las pruebas, utiliza `pytest`. Las pruebas se encuentran en la carpeta `tests`.
 
 ```sh
 pytest tests/
 ```
+
+### Interpretación de los Resultados de las Pruebas
+
+Cuando ejecutas las pruebas, verás algo como esto:
+
+```plaintext
+========================================================================== test session starts ===========================================================================
+platform win32 -- Python 3.12.4, pytest-8.3.1, pluggy-1.5.0
+rootdir: C:\Users\erika\Documents\github\Proyecto_WebScraping_ErikaAlvares\WebScraping_ErikaAlvares
+plugins: mock-3.14.0
+collected 7 items
+
+test_data_processing.py .                                                                                                                                           [ 14%]
+test_integration.py .                                                                                                                                               [ 28%]
+test_performance.py ..                                                                                                                                              [ 57%]
+test_scraping.py ..                                                                                                                                                 [ 85%]
+test_security.py .                                                                                                                                                  [100%]
+
+===================================================================== 7 passed in 100.82s (0:01:40) ======================================================================
+```
+
+- Los números entre corchetes (`[14%]`, `[28%]`, etc.) indican el progreso de la ejecución de los tests, no el porcentaje de éxito. Cada número indica el porcentaje de tests que se han ejecutado en relación con el total.
+- El hecho de que todos los tests hayan pasado (`7 passed`) confirma que no hubo fallos en ninguno de los tests.
 
 ## Archivo .gitignore
 
@@ -227,7 +288,6 @@ webscraping.log
 webscraping.log.*
 ```
 
-
 ## Configuración de Docker
 
 Para construir y ejecutar el contenedor Docker:
@@ -244,5 +304,3 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
-```
-
