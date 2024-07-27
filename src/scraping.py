@@ -7,9 +7,11 @@ from logging_config import logger # gestión de logs
 
 def clean_text(text):
     """
-    Limpia el texto eliminando caracteres no ASCII.
+    Limpia el texto eliminando caracteres no ASCII y otros caracteres especiales.
     """
-    return re.sub(r'[^\x00-\x7F]+', '', text).strip()
+    text = re.sub(r'[^\x00-\x7F]+', '', text)  # Elimina caracteres no ASCII
+    text = re.sub(r'\s+', ' ', text)  # Reemplaza cualquier espacio en blanco (incluyendo nuevas líneas) por un espacio
+    return text.strip()
 
 def scrape_quotes():
     """
@@ -59,6 +61,7 @@ def scrape_quotes():
 
     quotes_df = pd.DataFrame(quotes, columns=['quote', 'author', 'tags'])
     authors_df = pd.DataFrame(authors, columns=['name', 'born_date', 'born_location', 'description']).drop_duplicates()
+    
 
     logger.info('Scraping completed successfully.')
     return quotes_df, authors_df

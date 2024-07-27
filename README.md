@@ -1,4 +1,3 @@
-
 # Documentación del Proyecto
 
 ## erika_alvares_web_scraping
@@ -16,28 +15,35 @@ La estructura del proyecto está organizada de la siguiente manera:
 Proyecto_WebScraping_ErikaAlvares/
 │
 ├── WebScraping_ErikaAlvares/
-│   ├── src/
-│   │   ├── __init__.py
-│   │   ├── main.py
-│   │   ├── db_setup.py
-│   │   ├── scraping.py
-│   │   ├── data_processing.py
-│   │   ├── logging_config.py
-│   ├── tests/
-│   │   ├── __init__.py
-│   │   └── test_data_processing.py
-│   ├── venv/
 │   ├── data/
 │   │   ├── authors.csv
 │   │   ├── quotes.csv
 │   │   └── tags.csv
+│   ├── notebooks/
+│   │   └── web_scraping_quotes.ipynb
+│   ├── src/
+│   │   ├── __init__.py
+│   │   ├── data_processing.py
+│   │   ├── db_setup.py
+│   │   ├── logging_config.py
+│   │   ├── main.py
+│   │   ├── scraping.py
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_data_processing.py
+│   │   └── test_scraping.py
 │   ├── .gitignore
-│   └── README.md
-│
-└── requirements.txt
+│   ├── README.md
+│   ├── requirements.txt
+│   └── webscraping.log
+└── venv
 ```
 
 ### Descripción de Carpetas y Archivos
+
+#### `venv/`
+Esta carpeta contiene el entorno virtual para el proyecto, que incluye todas las dependencias instaladas necesarias para ejecutar el código. No es necesario modificar nada dentro de esta carpeta. 
+La he creado y nombrado `venv/` a la hora de crear mi entorno virtual y no la subiré a mi repositório en Github pero es una buena práctica trabajar con entornos virtuales desde tu máquina local.
 
 #### `src/`
 Esta carpeta contiene el código fuente principal del proyecto.
@@ -53,10 +59,8 @@ Esta carpeta contiene el código fuente principal del proyecto.
 Esta carpeta contiene las pruebas del proyecto.
 
 - `__init__.py`: Indica que esta carpeta debe ser tratada como un módulo de Python.
+- `test_scraping.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de scraping.
 - `test_data_processing.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de procesamiento de datos.
-
-#### `venv/`
-Esta carpeta contiene el entorno virtual para el proyecto, que incluye todas las dependencias instaladas necesarias para ejecutar el código. No es necesario modificar nada dentro de esta carpeta.
 
 #### `data/`
 Esta carpeta contiene los archivos CSV generados después del procesamiento de datos.
@@ -76,7 +80,7 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
 
 - Python 3.x
 - MySQL
-- Virtualenv
+- Módulo venv de Python
 
 ### Instalación
 
@@ -128,7 +132,7 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
     python src/main.py
     ```
 
-2. Salida Esperada desde la CONSOLA
+2. Ejemplo de Salida Esperada desde la CONSOLA
 
 ```plaintext
 Título: PROCESO DE WEB SCRAPING
@@ -186,6 +190,14 @@ Los archivos CSV han sido generados en la carpeta 'data'.
 
 El sistema de logging está configurado para registrar la ejecución del proceso en un archivo `webscraping.log`. Los logs se rotan después de alcanzar un tamaño máximo de 2000 bytes, con hasta 5 archivos de respaldo. El archivo `.gitignore` está configurado para excluir estos archivos de log.
 
+## Pruebas
+
+Para ejecutar las pruebas, utiliza `pytest`. Las pruebas se encuentran en la carpeta `tests`.
+
+```sh
+pytest tests/
+```
+
 ## Archivo .gitignore
 
 El archivo `.gitignore` contiene las siguientes entradas para asegurar que los archivos y directorios innecesarios no se incluyan en el repositorio:
@@ -215,13 +227,6 @@ webscraping.log
 webscraping.log.*
 ```
 
-## Pruebas
-
-Para ejecutar las pruebas, utiliza `pytest`. Las pruebas se encuentran en la carpeta `tests`.
-
-```sh
-pytest tests/
-```
 
 ## Configuración de Docker
 
@@ -235,7 +240,11 @@ docker run -p 8501:8501 my-project
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
-¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
+¡Entra en mi web [
+
+https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
+```
+
