@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import time
-from logging_config import logger # gestión de logs
+from logging_config import logger  # gestión de logs
 
 def clean_text(text):
     """
@@ -15,8 +15,8 @@ def clean_text(text):
 
 def scrape_quotes():
     """
-    Realiza el web scraping de la página de citas y devuelve dos DataFrames:
-    uno con las citas y otro con los autores.
+    Realiza el web scraping de la página de citas y devuelve tres DataFrames:
+    uno con las citas, otro con los autores y otro con las etiquetas.
     """
     session = requests.Session()
     quotes = []
@@ -45,6 +45,7 @@ def scrape_quotes():
 
                 quotes.append((text, author_name, tags_list))
                 authors.append((author_name, born_date, born_location, description))
+                tags.extend(tags_list)
 
             next_page = soup.select_one('.next > a')
             url = f"http://quotes.toscrape.com{next_page['href']}" if next_page else None
@@ -61,7 +62,7 @@ def scrape_quotes():
 
     quotes_df = pd.DataFrame(quotes, columns=['quote', 'author', 'tags'])
     authors_df = pd.DataFrame(authors, columns=['name', 'born_date', 'born_location', 'description']).drop_duplicates()
-    
+    tags_df = pd.DataFrame(tags, columns=['tag']).drop_duplicates()
 
     logger.info('Scraping completed successfully.')
-    return quotes_df, authors_df
+    return quotes_df, authors_df, tags_df

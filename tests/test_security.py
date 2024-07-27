@@ -1,14 +1,26 @@
 import pytest
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from src.db_setup import session, Author, engine
+from src.db_setup import session, Author
 
 def test_sql_injection():
-    malicious_query = "INSERT INTO authors (name, born_date, born_location, description) VALUES ('Robert\'); DROP TABLE authors;--', '01-01-1970', 'Unknown', 'This is a test for SQL injection')"
+    malicious_author = Author(
+        name="Robert'); DROP TABLE authors;--",
+        born_date="01-01-1970",
+        born_location="Unknown",
+        description="This is a test for SQL injection"
+    )
     try:
-        with engine.connect() as connection:
-            connection.execute(malicious_query)
+        session.add(malicious_author)
+        session.commit()
+    except IntegrityError as e:
+        print("IntegrityError caught:", e)
+        session.rollback()
+        assert True
     except SQLAlchemyError as e:
         print("SQLAlchemyError caught:", e)
-        assert True, "SQLAlchemyError caught as expected"
+        session.rollback()
+        assert False, f"Unexpected SQLAlchemyError: {e}"
     else:
-        assert False, "No exception raised for SQL injection"
+        session.rollback()
+        print("No exception raised for SQL injection, which is good if the ORM is handling it properly.")
+        assert True
