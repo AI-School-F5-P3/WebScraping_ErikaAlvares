@@ -1,7 +1,7 @@
 # Documentación del Proyecto
 
 
-## Proyecto de Web Scraping y Normalización de Datos
+## Proyecto de Web Scraping - FRONT-END
 
 Dando secuencia al desarrollo del proyecto con web scrapping y atendendo a los rquisitos de nivel medio desarrollaré este proyecto en esta rama `frontend_streamlit`.
 
