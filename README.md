@@ -6,7 +6,11 @@
 Dando secuencia al desarrollo del proyecto con web scrapping y atendendo a los requisitos de nivel medio desarrollaré este proyecto en la rama `frontend_streamlit` para que no se mezcle con los demás proyectos de niveles esencial, medio y avanzado.
 
 ## Nivel Experto
-Para el nivel experto se pide la creación de un front-end (interface gráfica), desplegar el proyecto en la nube.
+Para el nivel experto se pide:
+- Dockerización del proyecto para asegurar un entorno de ejecución consistente.
+- Implementación de un frontend básico para visualizar los datos extraídos. 
+- Despliegue de la aplicación en un servidor web accesible públicamente. 
+- Utilizar otras webs de frases para aumentar la cantidad de frases scrapeadas.
 
 
 ## Estructura del Proyecto
