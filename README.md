@@ -3,7 +3,7 @@
 
 ## Proyecto de Web Scraping - FRONT-END
 
-Dando secuencia al desarrollo del proyecto con web scrapping y atendendo a los rquisitos de nivel medio desarrollaré este proyecto en esta rama `frontend_streamlit`.
+Dando secuencia al desarrollo del proyecto con web scrapping y atendendo a los requisitos de nivel medio desarrollaré este proyecto en la rama `frontend_streamlit` para que no se mezcle con los demás proyectos de niveles esencial, medio y avanzado.
 
 ## Nivel Experto
 Para el nivel experto se pide la creación de un front-end (interface gráfica), desplegar el proyecto en la nube.
