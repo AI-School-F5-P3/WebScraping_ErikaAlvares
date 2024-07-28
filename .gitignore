@@ -191,10 +191,11 @@ Thumbs.db
 *.exe
 
 # Ignorar archivos de log generados por logging_config.py
-webscraping.log
-webscraping.log.*
+# Los he comentado para sacar estadisticas en Streamlit que va a leer estos datos automaticametne desde Github
+# webscraping.log
+# webscraping.log.*
 
 # Ignorar los .csv generados en el processo de web scraping
 venv/
 __pycache__/
-data/*.csv
+# data/*.csv # Lo voy a necesitar para generar las graficas en Streamlit que va se conectar directamente a mi repositorio en Github
