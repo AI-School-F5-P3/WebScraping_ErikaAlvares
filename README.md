@@ -16,6 +16,10 @@ Proyecto_WebScraping_ErikaAlvares/
 │
 ├── WebScraping_ErikaAlvares/
 │   ├── data/
+│   │   ├── logs/
+│   │   │   ├── webscraping.log
+│   │   │   ├── webscraping.log.1
+│   │   │   ├── webscraping.log.2
 │   │   ├── authors.csv
 │   │   ├── quotes.csv
 │   │   └── tags.csv
@@ -30,6 +34,7 @@ Proyecto_WebScraping_ErikaAlvares/
 │   │   ├── scraping.py
 │   ├── tests/
 │   │   ├── __init__.py
+│   │   ├── conftest.py
 │   │   ├── test_data_processing.py
 │   │   ├── test_integration.py
 │   │   ├── test_performance.py
@@ -38,7 +43,6 @@ Proyecto_WebScraping_ErikaAlvares/
 │   ├── .gitignore
 │   ├── README.md
 │   ├── requirements.txt
-│   └── webscraping.log
 └── venv
 ```
 
@@ -46,7 +50,7 @@ Proyecto_WebScraping_ErikaAlvares/
 
 #### `venv/`
 Esta carpeta contiene el entorno virtual para el proyecto, que incluye todas las dependencias instaladas necesarias para ejecutar el código. No es necesario modificar nada dentro de esta carpeta. 
-La he creado y nombrado `venv/` a la hora de crear mi entorno virtual y no la subiré a mi repositório en Github pero es una buena práctica trabajar con entornos virtuales desde tu máquina local.
+La he creado y nombrado `venv/` a la hora de crear mi entorno virtual y no la subiré a mi repositorio en Github pero es una buena práctica trabajar con entornos virtuales desde tu máquina local.
 
 #### `src/`
 Esta carpeta contiene el código fuente principal del proyecto.
@@ -62,6 +66,7 @@ Esta carpeta contiene el código fuente principal del proyecto.
 Esta carpeta contiene las pruebas del proyecto.
 
 - `__init__.py`: Indica que esta carpeta debe ser tratada como un módulo de Python.
+- `conftest.py`: Configura los fixtures de pytest para el proyecto.
 - `test_scraping.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de scraping.
 - `test_data_processing.py`: Contiene pruebas unitarias para verificar el correcto funcionamiento de las funciones de procesamiento de datos.
 - `test_integration.py`: Contiene pruebas para verificar la integración de diferentes partes del sistema.
@@ -69,7 +74,7 @@ Esta carpeta contiene las pruebas del proyecto.
 - `test_security.py`: Contiene pruebas para verificar la seguridad del sistema, como la prevención de inyecciones SQL.
 
 #### `data/`
-Esta carpeta contiene los archivos CSV generados después del procesamiento de datos.
+Esta carpeta contiene los archivos CSV generados después del procesamiento de datos, así como los archivos de log.
 
 #### `.gitignore`
 Archivo que especifica qué archivos y directorios deben ser ignorados por Git. Incluye cosas como archivos compilados de Python, el entorno virtual, archivos de configuración específicos del entorno y archivos de log.
@@ -135,32 +140,38 @@ Archivo que lista todas las dependencias del proyecto. Estas dependencias pueden
 1. Ejecutar el script principal para realizar el scraping, procesar los datos y almacenarlos en la base de datos:
 
     ```sh
-    python src/main.py
+    python src/app/main.py
     ```
 
 2. Ejemplo de Salida Esperada desde la CONSOLA
 
 ```plaintext
+(venv) C:\Users\erika\Documents\github\Proyecto_WebScraping\WebScraping_ErikaAlvares>python src/main.py
 Título: PROCESO DE WEB SCRAPING
-El proceso de Web Scraping acaba de empezar – 2024-07-26 17:07:41
-El proceso de Web Scraping acaba de finalizar – 2024-07-26 17:08:05
+El proceso de Web Scraping acaba de empezar – 2024-07-28 12:02:55
+2024-07-28 12:02:58,470 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/
+2024-07-28 12:03:00,995 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/2/
+2024-07-28 12:03:03,492 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/3/
+2024-07-28 12:03:06,043 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/4/
+2024-07-28 12:03:08,533 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/5/
+2024-07-28 12:03:11,086 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/6/
+2024-07-28 12:03:13,592 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/7/
+2024-07-28 12:03:16,089 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/8/
+2024-07-28 12:03:18,581 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/9/
+2024-07-28 12:03:21,106 - webscraping - INFO - Scraped page: http://quotes.toscrape.com/page/10/
+2024-07-28 12:03:21,110 - webscraping - INFO - Scraping completed successfully.
+El proceso de Web Scraping acaba de finalizar – 2024-07-28 12:03:21
 Resumen Proceso de Web Scraping
 Han sido scrapeado(s) 100 registro(s) al total
 
-El proceso de Limpieza de los datos acaba de empezar – 2024-07-26 17:08:05
-Datos normalizados y guardados en la base de datos MySQL.
-El proceso de Limpieza acaba de finalizar – 2024-07-26 17:08:05
-Han sido limpiado(s) 100 registro(s) al total
-Han sido separado(s) lo(s) dato(s) de cita(s) en un dataframe 'Quotes'
-Han sido separado(s) lo(s) dato(s) de autor(es) en un dataframe 'Authors'
-Han sido separado(s) lo(s) dato(s) de etiqueta(s) en un dataframe 'Tags'
-Al total han sido importados:
-- 100 Quotes
-- 50 Authors
-- 6 Tags
+El proceso de Limpieza de los datos acaba de empezar – 2024-07-28 12:03:21     
+2024-07-28 12:03:21,465 - webscraping - INFO - Total Authors: 53, Imported: 0, Existing: 53
+2024-07-28 12:03:21,471 - webscraping - INFO - Total Tags: 140, Imported: 0, Existing: 140  
+2024-07-28 12:03:21,477 - webscraping - INFO - Total Quotes: 102, Imported: 0, Existing: 102
+El proceso de Limpieza acaba de finalizar – 2024-07-28 12:03:21 
+
 ¿Deseas generar un archivo .csv para Quotes, Authors y Tags? (S/N): S
 Los archivos CSV han sido generados en la carpeta 'data'.
-
 ```
 
 ## Estructura de la Base de Datos
@@ -208,9 +219,7 @@ El sistema de logging está configurado para registrar la ejecución del proceso
 
 #### `test_data_processing.py`
 - **Objetivo**: Verificar el correcto funcionamiento de las funciones de procesamiento de datos.
-- **Pruebas
-
- realizadas**:
+- **Pruebas realizadas**:
   - `test_process_data()`: Verifica que los datos se procesan y almacenan correctamente en la base de datos.
 
 #### `test_integration.py`
