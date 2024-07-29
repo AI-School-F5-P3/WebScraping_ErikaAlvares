@@ -122,4 +122,11 @@ Este proyecto fue desarrollado por [Erika Alvares](https://www.erikaalvares.es).
 
 ---
 
-Este README proporciona una visión general completa del proyecto, incluyendo la estructura, instrucciones de configuración y ejecución, descripción de funcionalidades y documentación de las librerías utilizadas.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
+¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
+
+## Licencia
+Este proyecto está bajo la Licencia MIT.
