@@ -5,11 +5,12 @@ import pandas as pd
 
 @st.cache_data
 def load_data():
-    authors_df = pd.read_csv('data/authors.csv')
-    quotes_df = pd.read_csv('data/quotes.csv')
-    tags_df = pd.read_csv('data/tags.csv')
-    quote_tag_df = pd.read_csv('data/quote_tag.csv')
+    authors_df = pd.read_csv('https://raw.githubusercontent.com/AI-School-F5-P3/WebScraping_ErikaAlvares/frontend_streamlit/data/authors.csv') # authors_df = pd.read_csv('data/authors.csv')
+    quotes_df = pd.read_csv('https://raw.githubusercontent.com/AI-School-F5-P3/WebScraping_ErikaAlvares/frontend_streamlit/data/quotes.csv') #quotes_df = pd.read_csv('data/quotes.csv')
+    tags_df = pd.read_csv('https://raw.githubusercontent.com/AI-School-F5-P3/WebScraping_ErikaAlvares/frontend_streamlit/data/tags.csv') #tags_df = pd.read_csv('data/tags.csv')
+    quote_tag_df = pd.read_csv('https://raw.githubusercontent.com/AI-School-F5-P3/WebScraping_ErikaAlvares/frontend_streamlit/data/quote_tag.csv') #quote_tag_df = pd.read_csv('data/quote_tag.csv')
     return authors_df, quotes_df, tags_df, quote_tag_df
+
 
 def create_sidebar(page):
     authors_df, quotes_df, tags_df, quote_tag_df = load_data()

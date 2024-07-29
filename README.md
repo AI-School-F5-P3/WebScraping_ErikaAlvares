@@ -6,6 +6,10 @@ Aquí tienes el contenido para el archivo `README.md` con la estructura del proy
 
 Este proyecto realiza web scraping en el sitio Quotes to Scrape para extraer citas, autores y etiquetas. Los datos son limpiados y normalizados antes de ser almacenados en una base de datos MySQL. Luego, se crean visualizaciones y filtros en una aplicación Streamlit.
 
+Este proyecto ha sido desplegado en la nube de Streamlit y esta configurado para acceder los archivos .CSV desde mí repositorio de Github. Toda vez que actualicemos los CSVs en Github se actualizará la aplicación en la nube automáticamente.
+
+Para acceder al proyecto en la nube, acceda a la dirección: https://proyectowebscrapingerikaalvares.streamlit.app/
+
 ## Estructura del Proyecto
 
 ```
