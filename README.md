@@ -3,6 +3,10 @@
 ## WebScraping_ErikaAlvares
 Proyecto desarrollado para una empresa ficticia llamada empresa XYZ Corp.
 
+Este proyecto esta enfocado en hacer el web scraping por media de la consola (terminal). 
+Al terminar el proceso de scraping en la web, limpia los datos, almacena en una base de datos MySQL y genera 4 CSV para seren usadas en el frontend que ha sido desarrollado en Streamlit.
+El proyecto de frontend con Streamlit se encuentra [aquí](https://github.com/AI-School-F5-P3/WebScraping_ErikaAlvares/tree/frontend_streamlit).
+
 ## Proyecto de Web Scraping y Normalización de Datos
 
 Este proyecto realiza web scraping en el sitio [Quotes to Scrape](http://quotes.toscrape.com/) para extraer citas, autores y etiquetas. Los datos son limpiados y normalizados antes de ser almacenados en una base de datos MySQL.
