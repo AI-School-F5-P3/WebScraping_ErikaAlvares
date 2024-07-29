@@ -1,3 +1,5 @@
+# tests/test_performance.py
+
 import pytest
 import time
 import sys
@@ -11,7 +13,7 @@ from scraping import scrape_quotes
 
 def test_scraping_performance():
     start_time = time.time()
-    quotes_df, authors_df, tags_df = scrape_quotes()
+    quotes_df, authors_df, tags_df, quote_tag_df = scrape_quotes()  # Ajustar para el nuevo retorno
     end_time = time.time()
     elapsed_time = end_time - start_time
     assert elapsed_time < 30  # Verifica que el scraping tome menos de 30 segundos
@@ -25,6 +27,7 @@ def test_processing_performance():
         'author': ['Author 1', 'Author 2'],
         'tags': [['tag1', 'tag2'], ['tag2', 'tag3']]
     })
+
     authors_df = pd.DataFrame({
         'name': ['Author 1', 'Author 2'],
         'born_date': ['Date 1', 'Date 2'],

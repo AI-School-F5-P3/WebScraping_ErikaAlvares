@@ -1,3 +1,5 @@
+# src/scraping.py
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -6,24 +8,19 @@ import time
 from logging_config import logger  # gestión de logs
 
 def clean_text(text):
-    """
-    Limpia el texto eliminando caracteres no ASCII y otros caracteres especiales.
-    """
     text = re.sub(r'[^\x00-\x7F]+', '', text)  # Elimina caracteres no ASCII
     text = re.sub(r'\s+', ' ', text)  # Reemplaza cualquier espacio en blanco (incluyendo nuevas líneas) por un espacio
     return text.strip()
 
 def scrape_quotes():
-    """
-    Realiza el web scraping de la página de citas y devuelve tres DataFrames:
-    uno con las citas, otro con los autores y otro con las etiquetas.
-    """
     session = requests.Session()
     quotes = []
     authors = []
     tags = []
+    quote_tag = []
 
     url = 'http://quotes.toscrape.com/'
+
     while url:
         try:
             response = session.get(url)
@@ -51,6 +48,7 @@ def scrape_quotes():
             url = f"http://quotes.toscrape.com{next_page['href']}" if next_page else None
 
             time.sleep(0.1)  # Ajusta según sea necesario
+
             logger.info(f'Scraped page: {response.url}')
 
         except requests.RequestException as e:
@@ -64,5 +62,14 @@ def scrape_quotes():
     authors_df = pd.DataFrame(authors, columns=['name', 'born_date', 'born_location', 'description']).drop_duplicates()
     tags_df = pd.DataFrame(tags, columns=['tag']).drop_duplicates()
 
+    # Crear el DataFrame quote_tag_df
+    quote_tag_data = []
+    for quote_id, quote_row in quotes_df.iterrows():
+        for tag in quote_row['tags']:
+            tag_id = tags_df.index[tags_df['tag'] == tag].tolist()[0]
+            quote_tag_data.append((quote_id, tag_id))
+    
+    quote_tag_df = pd.DataFrame(quote_tag_data, columns=['quote_id', 'tag_id'])
+
     logger.info('Scraping completed successfully.')
-    return quotes_df, authors_df, tags_df
+    return quotes_df, authors_df, tags_df, quote_tag_df
