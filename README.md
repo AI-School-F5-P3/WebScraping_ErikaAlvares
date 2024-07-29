@@ -1,77 +1,125 @@
-# Documentación del Proyecto
+Aquí tienes el contenido para el archivo `README.md` con la estructura del proyecto, instrucciones para configurar y ejecutar el proyecto, una descripción de las funcionalidades, y la documentación de las librerías utilizadas:
 
+---
 
-## Proyecto de Web Scraping - FRONT-END
+# Proyecto Web Scraping y Dashboard con Streamlit
 
-Dando secuencia al desarrollo del proyecto con web scrapping y atendendo a los requisitos de nivel medio desarrollaré este proyecto en la rama `frontend_streamlit` para que no se mezcle con los demás proyectos de niveles esencial, medio y avanzado.
-
-## Nivel Experto
-Para el nivel experto se pide:
-- Dockerización del proyecto para asegurar un entorno de ejecución consistente.
-- Implementación de un frontend básico para visualizar los datos extraídos. 
-- Despliegue de la aplicación en un servidor web accesible públicamente. 
-- Utilizar otras webs de frases para aumentar la cantidad de frases scrapeadas.
-
+Este proyecto realiza web scraping en el sitio Quotes to Scrape para extraer citas, autores y etiquetas. Los datos son limpiados y normalizados antes de ser almacenados en una base de datos MySQL. Luego, se crean visualizaciones y filtros en una aplicación Streamlit.
 
 ## Estructura del Proyecto
 
-La estructura del proyecto está organizada de la siguiente manera:
-
-
-### Descripción de Carpetas y Archivos
-
-
-## Instalación y Configuración
-
-### Requisitos
-
-- Python 3.x
-- Módulo venv de Python
-
-### Instalación
-
-1. Clonar el repositorio:
-
-    ```sh
-    git clone https://github.com/AI-School-F5-P3/WebScraping_ErikaAlvares.git
-    cd WebScraping_ErikaAlvares
-    ```
-
-2. Crear y activar un entorno virtual:
-
-    ```sh
-    python -m venv venv
-    .\venv\Scripts\activate  # En Windows
-    source venv/bin/activate  # En macOS y Linux
-    ```
-
-3. Instalar las dependencias:
-
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-### Configuración de la Base de Datos
-
-1. Configurar la conexión a la base de datos en `Github`:
-
-    
-## Ejecución del Proyecto
-
-
-## Configuración de Docker
-
-Para construir y ejecutar el contenedor Docker:
-
-```sh
-docker build -t my-project .
-docker run -p 8501:8501 my-project
+```
+PROYECTO_WEBSCRAPING_ERIKAALVARES/
+│
+├── app/
+│   ├── __init__.py
+│   ├── dashboard_authors.py
+│   ├── dashboard_quotes.py
+│   └── sidebar.py
+│
+├── data/
+│   ├── authors.csv
+│   ├── quote_tag.csv
+│   ├── quotes.csv
+│   └── tags.csv
+│
+├── venv/
+│
+├── .streamlit/
+│   └── config.toml
+│
+├── .gitignore
+├── main.py
+└── requirements.txt
 ```
 
-## Contribuciones
+## Instalación
 
-Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para discutir cualquier cambio.
-¡Entra en mi web [https://www.erikaalvares.es](https://www.erikaalvares.es) y contacta conmigo!
+1. Clona el repositorio a tu máquina local.
+   ```bash
+   git clone https://github.com/AI-School-F5-P3/WebScraping_ErikaAlvares.git
+   ```
 
-## Licencia
-Este proyecto está bajo la Licencia MIT.
+2. Navega al directorio del proyecto.
+   ```bash
+   cd PROYECTO_WEBSCRAPING_ERIKAALVARES
+   ```
+
+3. Crea y activa un entorno virtual (opcional pero recomendado).
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Para Windows: venv\Scripts\activate
+   ```
+
+4. Instala las dependencias.
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Ejecución
+
+1. Ejecuta la aplicación Streamlit.
+   ```bash
+   streamlit run main.py
+   ```
+
+2. Abre tu navegador y navega a `http://localhost:8501` para ver la aplicación en ejecución.
+
+## Descripción de Funcionalidades
+
+### Página Home
+
+En la página de inicio, se presenta una introducción sobre el proyecto y un botón para acceder al repositorio de GitHub.
+
+### Página Quotes
+
+Esta página muestra un dashboard con las siguientes funcionalidades:
+- Filtros por autores y etiquetas.
+- Visualización de KPIs (Total Quotes, Total Authors, Total Tags).
+- Gráficos interactivos que muestran el número de citas por autor y por etiqueta.
+- Tabla de los 10 autores principales y las 10 etiquetas principales.
+
+### Página Authors
+
+Esta página muestra un dashboard con las siguientes funcionalidades:
+- Filtros por ubicación de nacimiento y por nombre de autor.
+- Detalles descriptivos de los autores filtrados, incluyendo su nombre, fecha de nacimiento, lugar de nacimiento y una descripción.
+
+## Librerías Utilizadas
+
+### Streamlit
+
+Streamlit es una librería de Python que permite crear aplicaciones web interactivas y visualizaciones de datos de manera sencilla y rápida. En este proyecto, se utiliza para crear el frontend de la aplicación y mostrar los datos de manera interactiva.
+
+### pandas
+
+Pandas es una librería de Python especializada en el manejo y análisis de estructuras de datos. En este proyecto, se utiliza para manipular los datos obtenidos del web scraping y preparar los datos para su visualización en la aplicación Streamlit.
+
+### plotly
+
+Plotly es una librería de visualización de datos que permite crear gráficos interactivos y dinámicos. En este proyecto, se utiliza para crear gráficos de barras que muestran el número de citas por autor y por etiqueta.
+
+### streamlit_option_menu
+
+Streamlit Option Menu es una librería que permite crear menús de navegación personalizados en Streamlit. En este proyecto, se utiliza para crear el menú horizontal que permite navegar entre las diferentes páginas de la aplicación.
+
+### st_aggrid
+
+st_aggrid es una librería que integra AG Grid, un componente de grilla de datos avanzado para la web, con Streamlit. Aunque no se utiliza en el código final del proyecto, es una opción útil para manejar y visualizar grandes conjuntos de datos de manera interactiva en aplicaciones Streamlit.
+
+## Datos
+
+Los datos utilizados en este proyecto se obtienen del sitio Quotes to Scrape mediante web scraping. Los archivos CSV generados contienen información sobre citas, autores y etiquetas, y se almacenan en la carpeta `data` del proyecto:
+
+- `authors.csv`: Contiene información sobre los autores.
+- `quote_tag.csv`: Contiene la relación entre citas y etiquetas.
+- `quotes.csv`: Contiene las citas extraídas.
+- `tags.csv`: Contiene las etiquetas asociadas a las citas.
+
+## Desarrollado por
+
+Este proyecto fue desarrollado por [Erika Alvares](https://www.erikaalvares.es).
+
+---
+
+Este README proporciona una visión general completa del proyecto, incluyendo la estructura, instrucciones de configuración y ejecución, descripción de funcionalidades y documentación de las librerías utilizadas.
