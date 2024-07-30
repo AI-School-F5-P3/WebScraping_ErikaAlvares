@@ -31,6 +31,15 @@ def show_quotes_dashboard(selected_authors, selected_tags, show_index, authors_d
     # Filtrar las citas finales basadas en los ids obtenidos
     filtered_quotes = quotes_df.loc[filtered_quote_ids]
 
+    # Calcular el total de tags basado en quote_tag_df cuando no hay filtros aplicados
+    if selected_authors or selected_tags:
+        # Filtrar los tags asociados a las citas filtradas
+        filtered_quote_tag_ids = quote_tag_df[quote_tag_df['quote_id'].isin(filtered_quote_ids)]['tag_id'].unique().tolist()
+        total_tags = len(filtered_quote_tag_ids)
+    else:
+        # Total de tags basado en quote_tag_df sin filtros
+        total_tags = len(quote_tag_df['tag_id'].unique())
+
     # KPI section
     st.markdown("""
         <div style="background-color: #2ECC71; padding: 1rem; border-radius: 10px;">
@@ -50,7 +59,7 @@ def show_quotes_dashboard(selected_authors, selected_tags, show_index, authors_d
                 </div>
             </div>
         </div>
-    """.format(len(filtered_quotes), len(filtered_quotes['author'].unique()), len(filtered_quote_ids_by_tags)), unsafe_allow_html=True)
+    """.format(len(filtered_quotes), len(filtered_quotes['author'].unique()), total_tags), unsafe_allow_html=True)
 
     # Quotes by Author and Top Authors side by side
     col1, col2 = st.columns([2, 1])  # Proporción 2:1 para gráfica y tabla
