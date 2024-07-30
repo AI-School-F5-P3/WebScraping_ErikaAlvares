@@ -1,5 +1,3 @@
-Aquí tienes el contenido para el archivo `README.md` con la estructura del proyecto, instrucciones para configurar y ejecutar el proyecto, una descripción de las funcionalidades, y la documentación de las librerías utilizadas:
-
 ---
 
 # Proyecto Web Scraping y Dashboard con Streamlit
